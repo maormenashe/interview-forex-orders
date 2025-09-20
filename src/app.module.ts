@@ -1,11 +1,20 @@
 import { Logger, Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Connection } from 'mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import jwtConfig from './config/jwt.config';
+import { JwtConfigModule } from './modules/users/jwt-config.module';
+import { UsersModule } from './modules/users/users.module';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [jwtConfig],
+    }),
+    JwtConfigModule,
     MongooseModule.forRoot('mongodb://localhost:27017/forex-orders', {
       connectionFactory: (connection: Connection) => {
         const logger = new Logger('Mongoose');
@@ -21,6 +30,7 @@ import { AppService } from './app.service';
         return connection;
       },
     }),
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

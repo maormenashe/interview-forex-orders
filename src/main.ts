@@ -11,7 +11,15 @@ async function bootstrap() {
     .setTitle('Forex Orders API')
     .setDescription('Orders + realtime updates')
     .setVersion('1.0')
+    .addBearerAuth({
+      type: 'http',
+      scheme: 'bearer',
+      bearerFormat: 'JWT',
+      name: 'Authorization',
+      in: 'header',
+    })
     .build();
+
   const doc = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, doc);
 
