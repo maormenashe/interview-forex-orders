@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ../..:/workspace:cached
+    command: sleep infinity
+    network_mode: service:mongo
+    environment:
+      - MONGO_URI=mongodb://localhost:27017/forex-orders
+      - NODE_ENV=development
+
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    volumes:
+      - mongo-data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=forex-orders
+    ports:
+      - "27017:27017"
+
+volumes:
+  mongo-data:
+
