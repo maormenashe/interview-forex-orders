@@ -28,7 +28,6 @@ async function bootstrap() {
 
   // Detect if running in GitHub Codespaces
   const codespaceName = process.env.CODESPACE_NAME;
-  const codespaceDomain = process.env.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN;
 
   if (codespaceName) {
     // Running in Codespaces
