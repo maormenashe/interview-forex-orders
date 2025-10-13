@@ -9,7 +9,6 @@ This project is configured to run seamlessly in GitHub Codespaces with automatic
 ### Getting Started
 
 1. **Create a Codespace**
-   - Go to your GitHub repository
    - Click the green "Code" button
    - Select the "Codespaces" tab
    - Click "Create codespace on main"
