@@ -30,15 +30,18 @@ async function bootstrap() {
   const codespaceName = process.env.CODESPACE_NAME;
   const codespaceDomain = process.env.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN;
 
-  if (codespaceName && codespaceDomain) {
-    // Running in Codespaces - use the forwarded URL
-    const appUrl = `https://${codespaceName}-${port}.${codespaceDomain}`;
-    console.log(`App listening on ${appUrl}`);
-    console.log(`Swagger at ${appUrl}/api`);
+  if (codespaceName) {
+    // Running in Codespaces
+    console.log(`\n🚀 App is running in GitHub Codespaces!`);
+    console.log(`📱 Check the PORTS tab for the forwarded URL`);
+    console.log(`🔗 Or use: https://${codespaceName}-${port}.app.github.dev`);
+    console.log(
+      `📚 Swagger: https://${codespaceName}-${port}.app.github.dev/api\n`,
+    );
   } else {
     // Running locally
-    console.log(`App listening on http://localhost:${port}`);
-    console.log(`Swagger at http://localhost:${port}/api`);
+    console.log(`\n🚀 App listening on http://localhost:${port}`);
+    console.log(`📚 Swagger at http://localhost:${port}/api\n`);
   }
 }
 bootstrap();

@@ -11,7 +11,7 @@
         "esbenp.prettier-vscode",
         "firsttris.vscode-jest-runner",
         "mongodb.mongodb-vscode",
-        "tomoki1207.pdf"
+        "mathematic.vscode-pdf"
       ],
       "settings": {
         "editor.formatOnSave": true,
@@ -38,7 +38,6 @@
   },
 
   "postCreateCommand": "npm install",
-  "postStartCommand": "npm run start:debug",
 
   "remoteUser": "node"
 }
