@@ -25,7 +25,20 @@ async function bootstrap() {
 
   const port = process.env.PORT || 3000;
   await app.listen(port);
-  console.log(`App listening on http://localhost:${port}`);
-  console.log(`Swagger at http://localhost:${port}/api`);
+
+  // Detect if running in GitHub Codespaces
+  const codespaceName = process.env.CODESPACE_NAME;
+  const codespaceDomain = process.env.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN;
+
+  if (codespaceName && codespaceDomain) {
+    // Running in Codespaces - use the forwarded URL
+    const appUrl = `https://${codespaceName}-${port}.${codespaceDomain}`;
+    console.log(`App listening on ${appUrl}`);
+    console.log(`Swagger at ${appUrl}/api`);
+  } else {
+    // Running locally
+    console.log(`App listening on http://localhost:${port}`);
+    console.log(`Swagger at http://localhost:${port}/api`);
+  }
 }
 bootstrap();
